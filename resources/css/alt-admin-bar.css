@@ -1,0 +1,67 @@
+.alt-admin-bar{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.alt-admin-bar-main {
+    background-color: darkgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.alt-admin-bar-tabs{
+    display: flex;
+    background-color: red;
+    color: #0E0EFF;
+}
+.alt-admin-bar-left{
+    display: flex;
+}
+.alt-admin-bar-right{
+    display: flex;
+}
+.alt-admin-bar-item{
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alt-admin-logo-container{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.alt-admin-logo{
+    width: 100%;
+}
+.alt-admin-avatar-container{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-image: url('https://creativenerds.co.uk/wp-content/uploads/2023/08/vibrant-gradient.jpg');
+    background-size: cover;
+}
+.alt-admin-avatar{
+    color: #3C3C3C;
+    font-weight: bold;
+    font-size: 20px;
+}
+.btn {
+    /*
+      All of the base styles have
+      moved to the “CSS” tab above.
+    */
+    transition: transform 250ms;
+}
+
+.btn:hover {
+    transform: translateY(-10px);
+}
+

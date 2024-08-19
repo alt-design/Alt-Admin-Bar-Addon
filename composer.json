@@ -1,0 +1,30 @@
+{
+    "name": "alt-design/alt-admin-bar",
+    "description": "Alt Admim Bar addon",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AltDesign\\AltAdminBar\\": "../../../alt-admin-bar/src"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "statamic/cms": "^4.0|^5.0"
+    },
+    "extra": {
+        "statamic": {
+            "name": "Alt Admin Bar",
+            "description": "Alt Admin Bar addon"
+        },
+        "laravel": {
+            "providers": [
+                "AltDesign\\AltAdminBar\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": false
+        }
+    }
+}
