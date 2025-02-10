@@ -1,5 +1,8 @@
 <?php
-namespace AltDesign\AltRedirect\Helpers;
+namespace AltDesign\AltAdminBar\Helpers;
+
+use Statamic\Facades\YAML;
+use Statamic\Filesystem\Manager;
 
 class Data
 {
@@ -8,6 +11,10 @@ class Data
        //
     }
 
-
+    public static function getMenuConfig() : array
+    {
+        $currentFile = with(new Manager())->disk()->get( __DIR__ . '/../../resources/menu/menu.yaml');
+        return Yaml::parse($currentFile);
+    }
 
 }
