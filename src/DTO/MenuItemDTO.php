@@ -24,24 +24,4 @@ class MenuItemDTO
     {
         $this->hasChildren = ($children != []);
     }
-
-    public function hasChildren() : bool
-    {
-        return $this->hasChildren;
-    }
-
-    public function title() : string
-    {
-        return $this->title;
-    }
-
-    public function href() : string
-    {
-        return $this->href;
-    }
-
-    public function children() : array
-    {
-        return $this->children;
-    }
 }

@@ -23,18 +23,4 @@ class MenuItemChildDTO
     {
         //
     }
-
-    public function title() : string
-    {
-        return $this->title;
-    }
-
-    public function href() : string
-    {
-        return $this->href;
-    }
-    public function style() : string
-    {
-        return $this->style;
-    }
 }
