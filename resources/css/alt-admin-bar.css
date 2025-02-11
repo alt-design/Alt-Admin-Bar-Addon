@@ -71,11 +71,18 @@
     transition-transform duration-300 ease-in-out group-hover:scale-y-100
 }
 
-.alt-dropdown-menu a:first-child {
+.alt-dropdown-menu a:first-child,
+.alt-dropdown-menu button:first-child{
     @apply rounded-t-md
 }
 
-.alt-dropdown-menu a:last-child {
+.alt-dropdown-menu a:last-child,
+.alt-dropdown-menu button:last-child{
     @apply rounded-b-md
 }
+
+.alt-dropdown-menu button label {
+    @apply text-left;
+}
+
 

@@ -1,6 +1,7 @@
 cp:
   title: 'Control Panel'
   href: '/cp'
+  hrefGenerator: 'controlPanel'
 
 cache:
   title: 'Cache'
@@ -16,4 +17,5 @@ cache:
       href: '/image-cache'
     - title: 'Clear All'
       href: '/clear-all'
-      style: 'block px-4 py-2 bg-alt-grey hover:bg-red-600 transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]'
+      post: true
+      style: 'block w-full px-4 py-2 bg-alt-grey hover:bg-red-600 transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]'

@@ -7,13 +7,23 @@ namespace AltDesign\AltAdminBar\Tags;
 use AltDesign\AltAdminBar\DTO\MenuItemChildDTO;
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
+use AltDesign\AltAdminBar\Helpers\RouteGenerator;
 use Illuminate\Foundation\Vite;
+use Statamic\Auth\UserTags;
 use Statamic\Tags\Tags;
+
+use Exception;
 
 class AltAdminBar extends Tags
 {
     protected static $handle = 'AltAdminBar';
     protected $assetPathProd = '/vendor/alt-design/alt-admin-bar/resources/img/';
+
+    public function __construct(
+        protected UserTags $userTags
+    )
+    {
+    }
 
     private function logo()
     {
@@ -48,7 +58,9 @@ class AltAdminBar extends Tags
             'menuItems' => $this->buildMenuOptions(),
             'logo' =>  $this->logo(),
             'profileUrl' => $this->profileUrl(),
-            'avatar' => $this->avatar()
+            'avatar' => $this->avatar(),
+            'cp' => RouteGenerator::controlPanel(),
+            'logout' => $this->logoutUrl()
         ]);
     }
 
@@ -59,6 +71,10 @@ class AltAdminBar extends Tags
         return $assets;
     }
 
+    /**
+     * @throws Exception
+     * @return array $items
+     */
     private function buildMenuOptions() : array
     {
         $items = [];
@@ -66,13 +82,13 @@ class AltAdminBar extends Tags
         foreach($menuConfig as $menuItem) {
             $children = [];
             foreach($menuItem['children'] ?? [] as $item) {
-                $children[] = MenuItemChildDTO::make(...$item);
+                $children[] = MenuItemChildDTO::make($item);
             }
 
             $dtoData = $menuItem;
             $dtoData['children'] = $children;
 
-            $items[] = MenuItemDTO::make(...$dtoData);
+            $items[] = MenuItemDTO::make($dtoData);
         }
         return $items;
     }
