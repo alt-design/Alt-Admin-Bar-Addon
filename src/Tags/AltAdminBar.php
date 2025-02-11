@@ -57,10 +57,11 @@ class AltAdminBar extends Tags
             'adminBarStyles' => $this->styles(),
             'menuItems' => $this->buildMenuOptions(),
             'logo' =>  $this->logo(),
-            'profileUrl' => $this->profileUrl(),
             'avatar' => $this->avatar(),
-            'cp' => RouteGenerator::controlPanel(),
-            'logout' => $this->logoutUrl()
+            'cpUrl' => RouteGenerator::controlPanel(),
+            'logoutUrl' => $this->logoutUrl(),
+            'preferencesUrl' => cp_route('preferences.user.edit'),
+            'profileUrl' => cp_route('account'),
         ]);
     }
 

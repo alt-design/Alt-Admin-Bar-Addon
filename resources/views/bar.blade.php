@@ -51,9 +51,10 @@
                 </div>
 
                 <div class="alt-dropdown-menu !-translate-x-3/4">
-                    <a href="{{ $cp }}" class="block px-4 py-2 alt-bg hover:text-alt-grey transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Control Panel</a>
-                    <a href="" class="block px-4 py-2 alt-bg hover:text-alt-grey transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Profile</a>
-                    <a href="{{ $logout }}" class="block px-4 py-2 bg-alt-grey hover:bg-red-600 transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Logout</a>
+                    <a href="{{ $cpUrl }}" class="block px-4 py-2 alt-bg hover:text-alt-grey transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Control Panel</a>
+                    <a href="{{ $preferencesUrl }}" class="block px-4 py-2 alt-bg hover:text-alt-grey transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Preferences</a>
+                    <a href="{{ $profileUrl }}" class="block px-4 py-2 alt-bg hover:text-alt-grey transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Profile</a>
+                    <a href="{{ $logoutUrl }}" class="block px-4 py-2 bg-alt-grey hover:bg-red-600 transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]">Logout</a>
                 </div>
             </div>
         </div>
