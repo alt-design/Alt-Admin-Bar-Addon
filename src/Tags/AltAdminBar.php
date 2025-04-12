@@ -20,7 +20,8 @@ class AltAdminBar extends Tags
     protected $assetPathProd = '/vendor/alt-design/alt-admin-bar/resources/img/';
 
     public function __construct(
-        protected UserTags $userTags
+        protected UserTags $userTags,
+        private Vite $vite
     )
     {
     }
@@ -67,9 +68,17 @@ class AltAdminBar extends Tags
 
     private function styles() : string
     {
-        $vite = (new Vite)->useHotfile( __DIR__ . '/../../resources/dist/hot')->useBuildDirectory('vendor/alt-admin-bar/build');
-        $assets = sprintf('<link rel="stylesheet" href="%s"/>', $vite->asset('resources/css/alt-admin-bar.css'));
-        return $assets;
+        return sprintf(
+            '<link rel="stylesheet" href="%s"/>',
+            $this->vite
+                ->useHotfile(
+                __DIR__ . '/../../resources/dist/hot'
+                )->useBuildDirectory(
+                    'vendor/alt-admin-bar/build'
+                )->asset(
+                    'resources/css/alt-admin-bar.css'
+                )
+        );
     }
 
     /**
