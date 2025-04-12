@@ -1,20 +1,23 @@
 <?php
 namespace AltDesign\AltAdminBar\Helpers;
 
-use Statamic\Facades\YAML;
+use Statamic\Yaml\Yaml;
 use Statamic\Filesystem\Manager;
 
 class Data
 {
-    public function __construct($type, $onlyRegex = false)
+    public function __construct(
+        private Manager $manager,
+        private Yaml $yaml
+    )
     {
        //
     }
 
-    public static function getMenuConfig() : array
+    public function getMenuConfig() : array
     {
-        $currentFile = with(new Manager())->disk()->get( __DIR__ . '/../../resources/menu/menu.yaml');
-        return Yaml::parse($currentFile);
+        $currentFile = $this->manager->disk()->get( __DIR__ . '/../../resources/menu/menu.yaml');
+        return $this->yaml->parse($currentFile);
     }
 
 }
