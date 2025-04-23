@@ -6,7 +6,7 @@
         <!-- Non Negotiables -->
         <a class="alt-admin-bar-px-4 alt-admin-bar-bg-gradient-to-r alt-admin-bar-from-pink-500 alt-admin-bar-via-yellow-400 alt-admin-bar-to-blue-500
               alt-admin-bar-bg-400 alt-admin-bar-bg-clip-text alt-admin-bar-text-transparent alt-admin-bar-transition-all alt-admin-bar-duration-500
-              hover:alt-admin-bar-animate-gradient-x" href="/">{{ config('app.name') }}</a>
+              hover:alt-admin-bar-animate-gradient-x alt-admin-bar-font-bold" href="/">{{ config('app.name') }}</a>
 
         <a class="hover:alt-admin-bar-bg-[#555555] alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex" href="@antlers{{ cp_url }}@endantlers">
             <svg class="alt-admin-bar-h-[18px] alt-admin-bar-mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7 5v3.5h3.5M9 22.5a6.979 6.979 0 0 0 1.5-4m4.5 4a6.979 6.979 0 0 1-1.5-4m-6.001 4h9M.5 15.5h23"></path><rect width="23" height="17" x=".5" y="1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" rx="1" ry="1"></rect><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.5 7 15 5l3 2.5 2.5-3m-1 8V11m-2 1.5v-2m-2 2v-3m-2 3V11"></path></svg>
