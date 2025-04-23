@@ -30,15 +30,15 @@
                 </a>
 
                 @if( $menuItem->hasChildren )
-                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1 alt-admin-bar-bg-[#333333]">
+                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333]">
                         @foreach($menuItem->children as $childKey => $child )
                             @if ($child->post)
                                 <form method="POST" action="{{ $child->href }}">
                                     @csrf
-                                    <button class="alt-admin-bar-px-3 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-whitespace-nowrap">{{ $child->title }}</button>
+                                    <button class="alt-admin-bar-px-3 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-whitespace-nowrap">{{ $child->title }}</button>
                                 </form>
                             @else
-                                <a class="alt-admin-bar-px-3 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $child->href }}" >{{ $child->title }}</a>
+                                <a class="alt-admin-bar-px-3 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $child->href }}" >{{ $child->title }}</a>
                             @endif
                         @endforeach
                     </div>
@@ -55,10 +55,10 @@
                     {{ $avatar }}
                 </div>
             </a>
-            <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1 alt-admin-bar-bg-[#333333]">
-                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $preferencesUrl }}">Preferences</a>
-                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $profileUrl }}">Profile</a>
-                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ cp_route('logout') }}">Logout</a>
+            <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1.5 alt-admin-bar-bg-[#333333]">
+                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $preferencesUrl }}">Preferences</a>
+                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $profileUrl }}">Profile</a>
+                <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ cp_route('logout') }}">Logout</a>
             </div>
         </div>
     </div>
