@@ -41,6 +41,11 @@ class AltAdminBar extends Tags
      */
     public function index()
     {
+        // Don't even bother if they're not logged in super-users.
+        if(!auth()->user() || !auth()->user()->isSuper()) {
+            return;
+        }
+
         return view('alt-admin-bar::bar', [
             'adminBarStyles' => $this->styles(),
             'menuItems' => $this->buildMenuOptions(),
