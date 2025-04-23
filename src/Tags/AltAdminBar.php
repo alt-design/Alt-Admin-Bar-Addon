@@ -49,7 +49,7 @@ class AltAdminBar extends Tags
         return view('alt-admin-bar::bar', [
             'adminBarStyles' => $this->styles(),
             'menuItems' => $this->buildMenuOptions(),
-            'avatar' => auth()->user()->name[0] ?? '', // We can assume we have at least the user
+            'avatar' => auth()->user()->name[0] ?? '', // We have at least the user
             'preferencesUrl' => cp_route('preferences.user.edit'),
             'profileUrl' => cp_route('account')
         ]);
