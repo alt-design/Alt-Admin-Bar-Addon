@@ -7,17 +7,26 @@ namespace AltDesign\AltAdminBar\Tags;
 use AltDesign\AltAdminBar\DTO\MenuItemChildDTO;
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
-use AltDesign\AltAdminBar\Helpers\RouteGenerator;
 use Illuminate\Foundation\Vite;
 use Statamic\Auth\UserTags;
 use Statamic\Tags\Tags;
 
 use Exception;
 
+/**
+ * Class AltAdminBar
+ *
+ * @package  AltDesign\AltAdminBar
+ * @author   Ben Harvey <ben@alt-design.net>, Benammi Swift <benammi@alt-design.net>, Lucy Ahmed <lucy@alt-design.net>
+ * @license  Copyright (C) Alt Design Limited - All Rights Reserved - licensed under the MIT license
+ * @link     https://alt-design.net
+ */
 class AltAdminBar extends Tags
 {
-    protected $assetPathProd = '/vendor/alt-design/alt-admin-bar/resources/img/';
-
+    /**
+     * @param UserTags $userTags
+     * @param Vite $vite
+     */
     public function __construct(
         protected UserTags $userTags,
         private Vite $vite
@@ -25,43 +34,14 @@ class AltAdminBar extends Tags
     {
     }
 
-    private function logo()
-    {
-        return 'https://statamic.com/images/storage/avatars/DFISl4Clu4Bk6uqdzekv2nThnGVsJdSKr4GfERSZ.jpg?fit=max&w=300&h=300';
-//        return $this->assetPathProd . 'alt-logo.jpg';
-    }
-
-    public function editUrl()
-    {
-//        return cp_route('collections.entries.edit', ['collection' => 'pages', 'entry' => $this->params->get('id')]);
-    }
-
-    private function profileUrl()
-    {
-        return cp_route('account');
-    }
-
-    private function avatar()
-    {
-        return strtoupper(substr(auth()?->user()?->name() ?? '', 0,1));
-    }
-
-    public function logoutUrl()
-    {
-        return cp_route('logout');
-    }
-
     public function index()
     {
         return view('alt-admin-bar::bar', [
             'adminBarStyles' => $this->styles(),
             'menuItems' => $this->buildMenuOptions(),
-            'logo' =>  $this->logo(),
-            'avatar' => $this->avatar(),
-            'cpUrl' => RouteGenerator::controlPanel(),
-            'logoutUrl' => $this->logoutUrl(),
+            'avatar' => auth()->user()->name[0] ?? '', // We can assume we have at least the user
             'preferencesUrl' => cp_route('preferences.user.edit'),
-            'profileUrl' => cp_route('account'),
+            'profileUrl' => cp_route('account')
         ]);
     }
 

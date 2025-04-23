@@ -1,8 +1,3 @@
-cp:
-  title: 'Control Panel'
-  href: '/cp'
-  hrefGenerator: 'controlPanel'
-
 cache:
   title: 'Cache'
   href: '/cp/utilities/cache'
