@@ -16,7 +16,6 @@ use Exception;
 
 class AltAdminBar extends Tags
 {
-    protected static $handle = 'AltAdminBar';
     protected $assetPathProd = '/vendor/alt-design/alt-admin-bar/resources/img/';
 
     public function __construct(
@@ -88,7 +87,7 @@ class AltAdminBar extends Tags
     private function buildMenuOptions() : array
     {
         $items = [];
-        $menuConfig = Data::getMenuConfig();
+        $menuConfig = app(Data::class)->getMenuConfig();
         foreach($menuConfig as $menuItem) {
             $children = [];
             foreach($menuItem['children'] ?? [] as $item) {
@@ -105,7 +104,7 @@ class AltAdminBar extends Tags
 
     private function buildCacheMenu(array &$items) : void
     {
-        $cacheConfig = Data::getMenuConfig()['cache'];
+        $cacheConfig = app(Data::class)->getMenuConfig()['cache'];
         $children = [];
         foreach($cacheConfig['children'] ?? [] as $item) {
             $children[] = MenuItemChildDTO::make(...$item);

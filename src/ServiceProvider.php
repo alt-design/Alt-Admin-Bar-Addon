@@ -32,13 +32,6 @@ class ServiceProvider extends AddonServiceProvider
         ]
     ];
 
-    public function boot()
-    {
-        (new BindingManager(
-            app: app()
-        ))->register();
-    }
-
     public function bootAddon()
     {
         $this->loadViewsFrom('../resources/views', 'alt-admin-bar');
@@ -46,6 +39,10 @@ class ServiceProvider extends AddonServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/alt-admin-bar'),
         ]);
+
+        (new BindingManager(
+            app: app()
+        ))->register();
     }
 }
 
