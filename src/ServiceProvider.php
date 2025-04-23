@@ -2,9 +2,16 @@
 
 namespace AltDesign\AltAdminBar;
 
-// Providers
 use Statamic\Providers\AddonServiceProvider;
 
+/**
+ * Class ServiceProvider
+ *
+ * @package  AltDesign\AltAdminBar
+ * @author   Ben Harvey <ben@alt-design.net>, Benammi Swift <benammi@alt-design.net>, Lucy Ahmed <lucy@alt-design.net>
+ * @license  Copyright (C) Alt Design Limited - All Rights Reserved - licensed under the MIT license
+ * @link     https://alt-design.net
+ */
 class ServiceProvider extends AddonServiceProvider
 {
     public function __construct($app)
@@ -12,10 +19,8 @@ class ServiceProvider extends AddonServiceProvider
         parent::__construct($app);
     }
 
-
     protected $vite = [
         'input' => [
-            'resources/js/alt-admin-bar.js',
             'resources/css/alt-admin-bar.css'
         ],
         'publicDirectory' => 'resources/dist',

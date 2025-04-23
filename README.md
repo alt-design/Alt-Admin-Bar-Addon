@@ -1,0 +1,47 @@
+# Alt Admin Bar Addon
+
+> Quick links to the control panel, edit current page, cache pages, other gubbins. Kinda extendable 👀
+
+## How to Install
+
+You can search for this addon in the `Tools > Addons` section of the Statamic control panel and click **install**, or run the following command from your project root:
+
+``` bash
+composer require alt-design/alt-admin-bar
+```
+
+## Basic Use
+
+Just slap this in your layout, as Todd Howard says, it should ✨Just Work™ ✨ 
+
+```
+{{ alt_admin_bar }}
+```
+
+
+## Questions etc
+
+Drop us a big shout-out if you have any questions, comments, or concerns. We're always looking to improve our addons, so if you have any feature requests, we'd love to hear them.
+
+### Starter Kits
+- [Alt Starter Kit](https://statamic.com/starter-kits/alt-design/alt-starter-kit)
+
+### Addons
+- [Alt Redirect Addon](https://github.com/alt-design/Alt-Redirect-Addon)
+- [Alt Sitemap Addon](https://github.com/alt-design/Alt-Sitemap-Addon)
+- [Alt Akismet Addon](https://github.com/alt-design/Alt-Akismet-Addon)
+- [Alt Password Protect Addon](https://github.com/alt-design/Alt-Password-Protect-Addon)
+- [Alt Cookies Addon](https://github.com/alt-design/Alt-Cookies-Addon)
+- [Alt Inbound Addon](https://github.com/alt-design/Alt-Inbound-Addon)
+- [Alt Google 2FA Addon](https://github.com/alt-design/Alt-Google-2fa-Addon)
+
+## Postcardware
+
+Send us a postcard from your hometown if you like this addon. We love getting mail from other cool peeps!
+
+Alt Design  
+St Helens House
+Derby  
+DE1 3EE
+UK  
+

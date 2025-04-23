@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace AltDesign\AltAdminBar\Tags;
 
-use AltDesign\AltAdminBar\DTO\MenuItemChildDTO;
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
 use Illuminate\Foundation\Vite;
@@ -34,6 +33,12 @@ class AltAdminBar extends Tags
     {
     }
 
+    /**
+     * Usage: {{ alt_admin_bar }}
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @throws Exception
+     */
     public function index()
     {
         return view('alt-admin-bar::bar', [
@@ -71,7 +76,7 @@ class AltAdminBar extends Tags
         foreach($menuConfig as $menuItem) {
             $children = [];
             foreach($menuItem['children'] ?? [] as $item) {
-                $children[] = MenuItemChildDTO::make($item);
+                $children[] = MenuItemDTO::make($item);
             }
 
             $dtoData = $menuItem;
@@ -80,19 +85,5 @@ class AltAdminBar extends Tags
             $items[] = MenuItemDTO::make($dtoData);
         }
         return $items;
-    }
-
-    private function buildCacheMenu(array &$items) : void
-    {
-        $cacheConfig = app(Data::class)->getMenuConfig()['cache'];
-        $children = [];
-        foreach($cacheConfig['children'] ?? [] as $item) {
-            $children[] = MenuItemChildDTO::make(...$item);
-        }
-
-        $dtoData = $cacheConfig;
-        $dtoData['children'] = $children;
-
-        $items[] = MenuItemDTO::make(...$dtoData);
     }
 }

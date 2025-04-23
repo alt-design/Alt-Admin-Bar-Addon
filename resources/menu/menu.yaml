@@ -1,16 +1,25 @@
 cache:
-  title: 'Cache'
+  title: 'Clear Cache'
   href: '/cp/utilities/cache'
   children:
-    - title: 'Content-Stache'
-      href: '/content-stache'
-    - title: 'Static Page Cache'
-      href: '/static-page-cache'
-    - title: 'Application Cache'
-      href: '/application-cache'
-    - title: 'Image Cache'
-      href: '/image-cache'
-    - title: 'Clear All'
-      href: '/clear-all'
+    -
+      title: 'Content'
+      href: 'utilities.cache.clear'
+      route_args:
+        - 'stache'
       post: true
-      style: 'block w-full px-4 py-2 bg-alt-grey hover:bg-red-600 transition-none hover:shadow-[inset_0px_2px_3px_0px_rgba(0,_0,_0,_0.4)]'
+      cp_route: true
+    -
+      title: 'Static Pages'
+      href: 'utilities.cache.clear'
+      route_args:
+        - 'static'
+      post: true
+      cp_route: true
+    -
+      title: 'Application Cache'
+      href: 'utilities.cache.clear'
+      route_args:
+        - 'application'
+      post: true
+      cp_route: true
