@@ -31,12 +31,6 @@ class ServiceProvider extends AddonServiceProvider
         \AltDesign\AltAdminBar\Tags\AltAdminBar::class,
     ];
 
-    protected $middlewareGroups = [
-        'web' => [
-            \AltDesign\AltAdminBar\Http\Middleware\InjectAdminBar::class,
-        ]
-    ];
-
     public function bootAddon()
     {
         $this->loadViewsFrom('../resources/views', 'alt-admin-bar');
