@@ -21,7 +21,7 @@ class MenuItemDTO
             post: $config['post'] ?? false,
             cp_route: $config['cp_route'] ?? false
         ))
-            ->applyRouteGenerator($config['routeGenerator'] ?? '');
+            ->mutateRoutes();
     }
 
     private function __construct(
@@ -36,25 +36,13 @@ class MenuItemDTO
         $this->hasChildren = ($children != []);
     }
 
-    private function applyRouteGenerator(string $routeGenerator) : self
+    private function mutateRoutes() : self
     {
         // If we have a post req, let's amend the href
         if($this->post) {
             $this->href = cp_route($this->href, $this->route_args);
 
             return $this; // Don't think we need to do anything else here?
-        }
-
-        if (!$routeGenerator) {
-            return $this;
-        }
-
-        try {
-            $this->href = RouteGenerator::{$routeGenerator}();
-        } catch (Exception $exception) {
-            throw new Exception("AltAdminBar : Error generating route with generator "
-                . $routeGenerator
-                .'. Are you sure it exists?');
         }
 
         return $this;
