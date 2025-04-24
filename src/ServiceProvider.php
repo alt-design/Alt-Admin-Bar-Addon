@@ -14,11 +14,6 @@ use Statamic\Providers\AddonServiceProvider;
  */
 class ServiceProvider extends AddonServiceProvider
 {
-    public function __construct($app)
-    {
-        parent::__construct($app);
-    }
-
     protected $vite = [
         'input' => [
             'resources/css/alt-admin-bar.css'
