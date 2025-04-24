@@ -1,6 +1,6 @@
 {!! $adminBarStyles !!}
 
-<div id="alt-admin-bar" class="alt-admin-bar alt-admin-bar-w-full alt-admin-bar-p-0 alt-admin-bar-flex alt-admin-bar-bg-[#333333] alt-admin-bar-text-sm alt-admin-bar-fixed alt-admin-bar-top-0 alt-admin-bar-z-50 alt-admin-bar-justify-between">
+<div id="alt-admin-bar" class="alt-admin-bar alt-admin-bar-w-full alt-admin-bar-p-0 alt-admin-bar-flex alt-admin-bar-bg-[#333333] alt-admin-bar-text-sm alt-admin-bar-fixed alt-admin-bar-top-0 alt-admin-bar-z-[500] alt-admin-bar-justify-between">
     <div class="alt-admin-bar-flex alt-admin-bar-text-white alt-admin-bar-items-center">
 
         <!-- Non Negotiables -->
@@ -30,7 +30,7 @@
                 </a>
 
                 @if( $menuItem->hasChildren )
-                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333] alt-admin-bar-z-50">
+                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333] alt-admin-bar-z-[500]">
                         @foreach($menuItem->children as $childKey => $child )
                             @if ($child->post)
                                 <form method="POST" action="{{ $child->href }}">
