@@ -52,6 +52,10 @@ class MenuItemDTO
             return $this; // Don't think we need to do anything else here?
         }
 
+        if($this->cp_route) {
+            $this->href = cp_route($this->href, $this->route_args);
+        }
+
         return $this;
     }
 }
