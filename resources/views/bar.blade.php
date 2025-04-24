@@ -23,7 +23,7 @@
         </a>
         <!-- End -->
 
-        @foreach( $menuItems as $menuKey => $menuItem )
+        @foreach($menuItems as $menuKey => $menuItem)
             <div class="alt-admin-bar-group alt-admin-bar-relative">
                 <a class="hover:alt-admin-bar-bg-[#555555] alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-inline-block" href="{{ $menuItem->href ?? '#' }}">
                     {{ $menuItem->title }}

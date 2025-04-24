@@ -18,6 +18,42 @@ Just slap this in your layout, as Todd Howard says, it should ✨Just Work™ �
 {{ alt_admin_bar }}
 ```
 
+## Extending The Bar
+
+We got a lil' event listener when the menu is created, this allows you to add to the menu as you fancy - usage is below:
+
+```
+use AltDesign\AltAdminBar\DTO\MenuItemDTO;
+
+Illuminate\Support\Facades\Event::listen('alt_admin_menu_items', function ($menuItems) {
+    
+    // Standard link w/ url
+    $menuItems[] = MenuItemDTO::make([
+        'title' => 'Simple Title',
+        'href' => '/simple-link',
+    ]);
+    
+    // Item with Children
+    $menuItems[] = MenuItemDTO::make([
+        'title' => 'Simple Title With Children',
+        'href' => '/simple-title-with-children',
+        'children' => [
+            MenuItemDTO::make([
+                'title' => 'Simple Child',
+                'href' => '/simple-child',
+            ]),
+            MenuItemDTO::make([
+                'title' => 'Simple Child ',
+                'href' => '/simple-child-2',
+            ])
+        ]
+    ]);
+    
+    return $menuItems;
+    
+});
+```
+
 
 ## Questions etc
 

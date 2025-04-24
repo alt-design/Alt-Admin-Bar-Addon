@@ -6,7 +6,9 @@ namespace AltDesign\AltAdminBar\Tags;
 
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
+use AltDesign\AltAdminBar\Listeners\HandleMenuItems;
 use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\Event;
 use Statamic\Auth\UserTags;
 use Statamic\Tags\Tags;
 
@@ -46,9 +48,17 @@ class AltAdminBar extends Tags
             return;
         }
 
+        $menuItems = $this->buildMenuOptions();
+
+        $menuItems = collect(event('alt_admin_menu_items', [$menuItems]))->last();
+
+        if(!is_array($menuItems)) {
+            $menuItems = [];
+        }
+
         return view('alt-admin-bar::bar', [
             'adminBarStyles' => $this->styles(),
-            'menuItems' => $this->buildMenuOptions(),
+            'menuItems' => $menuItems,
             'avatar' => auth()->user()->name[0] ?? '', // We have at least the user
             'preferencesUrl' => cp_route('preferences.user.edit'),
             'profileUrl' => cp_route('account')
@@ -89,6 +99,7 @@ class AltAdminBar extends Tags
 
             $items[] = MenuItemDTO::make($dtoData);
         }
+
         return $items;
     }
 }

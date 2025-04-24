@@ -2,6 +2,8 @@
 
 namespace AltDesign\AltAdminBar;
 
+use AltDesign\AltAdminBar\Listeners\HandleMenuItems;
+use Illuminate\Support\Facades\Event;
 use Statamic\Providers\AddonServiceProvider;
 
 /**
