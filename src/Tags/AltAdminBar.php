@@ -48,12 +48,12 @@ class AltAdminBar extends Tags
             return;
         }
 
-        $menuItems = $this->buildMenuOptions();
+        $ourItems = $this->buildMenuOptions();
 
-        $menuItems = collect(event('alt_admin_menu_items', [$menuItems]))->last();
+        $menuItems = collect(event('alt_admin_menu_items', [$ourItems]))->last();
 
         if(!is_array($menuItems)) {
-            $menuItems = [];
+            $menuItems = $ourItems;
         }
 
         return view('alt-admin-bar::bar', [
