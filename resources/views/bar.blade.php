@@ -30,7 +30,7 @@
                 </a>
 
                 @if( $menuItem->hasChildren )
-                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333]">
+                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333] alt-admin-bar-z-50">
                         @foreach($menuItem->children as $childKey => $child )
                             @if ($child->post)
                                 <form method="POST" action="{{ $child->href }}">
