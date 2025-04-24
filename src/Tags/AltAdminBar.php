@@ -25,10 +25,12 @@ class AltAdminBar extends Tags
     /**
      * @param UserTags $userTags
      * @param Vite $vite
+     * @param Data $data
      */
     public function __construct(
         protected UserTags $userTags,
-        private Vite $vite
+        private Vite $vite,
+        private Data $data
     )
     {
     }
@@ -46,12 +48,12 @@ class AltAdminBar extends Tags
             return;
         }
 
-        $theItems = $this->buildMenuOptions();
+        $menuItems = $this->buildMenuOptions();
 
-        $menuItems = collect(event('alt_admin_menu_items', [$theItems]))->last();
+        $menuItems = collect(event('alt_admin_menu_items', [$menuItems]))->last();
 
         if(!is_array($menuItems)) {
-            $menuItems = $theItems;
+            $menuItems = [];
         }
 
         return view('alt-admin-bar::bar', [
@@ -69,7 +71,7 @@ class AltAdminBar extends Tags
             '<link rel="stylesheet" href="%s"/>',
             $this->vite
                 ->useHotfile(
-                __DIR__ . '/../../resources/dist/hot'
+                    __DIR__ . '/../../resources/dist/hot'
                 )->useBuildDirectory(
                     'vendor/alt-admin-bar/build'
                 )->asset(
@@ -85,7 +87,7 @@ class AltAdminBar extends Tags
     private function buildMenuOptions() : array
     {
         $items = [];
-        $menuConfig = app(Data::class)->getMenuConfig();
+        $menuConfig = $this->data->getMenuConfig();
         foreach($menuConfig as $menuItem) {
             $children = [];
             foreach($menuItem['children'] ?? [] as $item) {
