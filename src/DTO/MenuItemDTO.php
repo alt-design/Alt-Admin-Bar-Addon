@@ -4,11 +4,30 @@ declare(strict_types=1);
 
 namespace AltDesign\AltAdminBar\DTO;
 
-use AltDesign\AltAdminBar\Helpers\RouteGenerator;
-
+/**
+ * Class MenuItemDTO
+ *
+ * @package  AltDesign\AltAdminBar
+ * @author   Ben Harvey <ben@alt-design.net>, Benammi Swift <benammi@alt-design.net>, Lucy Ahmed <lucy@alt-design.net>
+ * @license  Copyright (C) Alt Design Limited - All Rights Reserved - licensed under the MIT license
+ * @link     https://alt-design.net
+ */
 class MenuItemDTO
 {
     public ?bool $hasChildren;
+
+    private function __construct(
+        public string $title,
+        public string $href ,
+        public array $children,
+        public array $route_args,
+        public bool $post,
+        public bool $cp_route
+    )
+    {
+        $this->hasChildren = ($children != []);
+    }
+
     public static function make(
         array $config
     ) : self
@@ -22,18 +41,6 @@ class MenuItemDTO
             cp_route: $config['cp_route'] ?? false
         ))
             ->mutateRoutes();
-    }
-
-    private function __construct(
-        public string $title,
-        public string $href ,
-        public array $children,
-        public array $route_args,
-        public bool $post,
-        public bool $cp_route
-    )
-    {
-        $this->hasChildren = ($children != []);
     }
 
     private function mutateRoutes() : self
