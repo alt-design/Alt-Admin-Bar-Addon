@@ -1,6 +1,6 @@
 {!! $adminBarStyles !!}
 
-<div id="alt-admin-bar" class="alt-admin-bar alt-admin-bar-w-full alt-admin-bar-p-0 alt-admin-bar-flex alt-admin-bar-bg-[#333333] alt-admin-bar-text-sm alt-admin-bar-fixed alt-admin-bar-top-0 alt-admin-bar-justify-between">
+<div id="alt-admin-bar" class="alt-admin-bar alt-admin-bar-w-full alt-admin-bar-p-0 alt-admin-bar-flex alt-admin-bar-bg-[#333333] alt-admin-bar-text-sm alt-admin-bar-fixed alt-admin-bar-top-0 alt-admin-bar-z-50 alt-admin-bar-justify-between">
     <div class="alt-admin-bar-flex alt-admin-bar-text-white alt-admin-bar-items-center">
 
         <!-- Non Negotiables -->
@@ -64,4 +64,4 @@
     </div>
 </div>
 
-<script>document.body.style.paddingTop = document.querySelector('#alt-admin-bar').offsetHeight + 'px';</script>
+<script>document.body.style.paddingTop = document.querySelector('#alt-admin-bar').offsetHeight + 'px'; document.body.classList.add('has-alt-admin-bar')</script>
