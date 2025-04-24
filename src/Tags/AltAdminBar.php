@@ -6,9 +6,7 @@ namespace AltDesign\AltAdminBar\Tags;
 
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
-use AltDesign\AltAdminBar\Listeners\HandleMenuItems;
 use Illuminate\Foundation\Vite;
-use Illuminate\Support\Facades\Event;
 use Statamic\Auth\UserTags;
 use Statamic\Tags\Tags;
 
