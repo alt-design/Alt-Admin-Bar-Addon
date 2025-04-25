@@ -30,7 +30,7 @@
                 </a>
 
                 @if( $menuItem->hasChildren )
-                    <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333] alt-admin-bar-z-[500]">
+<div class="alt-admin-bar-opacity-0 alt-admin-bar-pointer-events-none group-hover:alt-admin-bar-opacity-100 group-hover:alt-admin-bar-pointer-events-auto alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-left-0 alt-admin-bar-max-w-[400px] alt-admin-bar-bg-[#333333] alt-admin-bar-z-[500] alt-admin-bar-transition-opacity alt-admin-bar-duration-300">
                         @foreach($menuItem->children as $childKey => $child )
                             @if ($child->post)
                                 <form method="POST" action="{{ $child->href }}">
@@ -55,7 +55,7 @@
                     {{ $avatar }}
                 </div>
             </a>
-            <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1.5 alt-admin-bar-bg-[#333333]">
+<div class="alt-admin-bar-opacity-0 alt-admin-bar-pointer-events-none group-hover:alt-admin-bar-opacity-100 group-hover:alt-admin-bar-pointer-events-auto alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1.5 alt-admin-bar-bg-[#333333] alt-admin-bar-transition-opacity alt-admin-bar-duration-300">
                 <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $preferencesUrl }}">Preferences</a>
                 <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ $profileUrl }}">Profile</a>
                 <a class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap" href="{{ cp_route('logout') }}">Logout</a>
