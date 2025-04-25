@@ -49,11 +49,20 @@ Illuminate\Support\Facades\Event::listen('alt_admin_menu_items', function ($menu
         ]
     ]);
     
+    // Control Panel Route (Using Runway as an example)
+    $menuItems[] = MenuItemDTO::make([
+        'title' => 'Edit Specific Page In Control Panel',
+        'href' => 'runway.edit', // Route Name
+        'cp_route' => true, // Tells the addon to use the cp_route() helper
+        'route_args' => ['resource' => 'example', 'model' => $id]
+    ]);
+    
     return $menuItems;
     
 });
 ```
 
+Currently working on a tag to help include this in templates.
 
 ## Questions etc
 
