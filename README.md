@@ -1,6 +1,6 @@
 # Alt Admin Bar Addon
 
-> Quick links to the control panel, edit current page, cache pages, other gubbins. Kinda extendable 👀
+> Quick links to the control panel, edit current page, cache pages, other gubbins.
 
 ## How to Install
 
