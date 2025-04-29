@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace AltDesign\AltAdminBar\Extend;
 
 use Statamic\Contracts\Entries\Entry;
-use Statamic\Facades\Site;
-use Statamic\Revisions\RevisionRepository;
 use Statamic\Stache\Repositories\EntryRepository as BaseEntryRepository;
 use AltDesign\AltAdminBar\Helpers\Data;
 use Statamic\Support\Arr;
@@ -15,7 +13,6 @@ class EntryRepository extends BaseEntryRepository
 {
     public function findByUri(string $uri, ?string $site = null): ?Entry
     {
-
         $site = $site ?? $this->stache->sites()->first();
 
         if ($substitute = Arr::get($this->substitutionsByUri, $site.'@'.$uri)) {
