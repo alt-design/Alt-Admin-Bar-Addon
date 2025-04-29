@@ -50,6 +50,30 @@
     <div class="alt-admin-bar-flex alt-admin-bar-text-white alt-admin-bar-items-center">
         <div class="alt-admin-bar-group alt-admin-bar-relative">
             <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]" href="{{ $profileUrl }}">
+                Revisions
+            </a>
+            <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1.5 alt-admin-bar-bg-[#333333]">
+                @forelse($revisions as $epoch => $revision)
+                    <a href="{{
+                        route('alt-admin-bar.revision.set',
+                        array_merge(
+                            $revisionHrefData,
+                            [ 'epoch' => $epoch ]
+                        )) }}">
+                        <div class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap">
+                            <div>Date : {{ \Carbon\Carbon::parse($epoch)->format('y/m/d H:i') }}</div>
+                            @if($revision->message())
+                                <div>Message : {{ $revision->message() }}</div>
+                            @endif
+                        </div>
+                    </a>
+                @empty
+                    <div>No revisions for this page</div>
+                @endforelse
+            </div>
+        </div>
+        <div class="alt-admin-bar-group alt-admin-bar-relative">
+            <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]" href="{{ $profileUrl }}">
                 <span>Hey there {{ auth()->user()->name ?? '' }}!</span>
                 <div class="alt-admin-bar-bg-[#555555] alt-admin-bar-uppercase alt-admin-bar-ml-3 alt-admin-bar-w-[22px] alt-admin-bar-h-[22px] alt-admin-bar-rounded-full alt-admin-bar-flex alt-admin-bar-items-center alt-admin-bar-justify-center">
                     {{ $avatar }}
