@@ -1,36 +1,28 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AltDesign\AltAdminBar\Tags;
 
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
+use Exception;
 use Illuminate\Foundation\Vite;
 use Statamic\Auth\UserTags;
 use Statamic\Facades\Site;
 use Statamic\Revisions\RevisionRepository;
 use Statamic\Tags\Tags;
-use Statamic\Revisions\Revision;
-use Statamic\Facades\Revision as RevisionFacade;
-
-use Exception;
 
 /**
  * Class AltAdminBar
  *
- * @package  AltDesign\AltAdminBar
  * @author   Ben Harvey <ben@alt-design.net>, Benammi Swift <benammi@alt-design.net>, Lucy Ahmed <lucy@alt-design.net>
  * @license  Copyright (C) Alt Design Limited - All Rights Reserved - licensed under the MIT license
+ *
  * @link     https://alt-design.net
  */
 class AltAdminBar extends Tags
 {
-    /**
-     * @param UserTags $userTags
-     * @param Vite $vite
-     * @param Data $data
-     */
     public function __construct(
         protected UserTags $userTags,
         private Vite $vite,
@@ -48,9 +40,9 @@ class AltAdminBar extends Tags
         return sprintf(
             '%s/%s/%s/%s',
             'collections',
-              $this->context['collection']->handle,
-              $site->handle(),
-              $this->context['page']->id
+            $this->context['collection']->handle,
+            $site->handle(),
+            $this->context['page']->id
         );
     }
 
@@ -58,28 +50,27 @@ class AltAdminBar extends Tags
      * Usage: {{ alt_admin_bar }}
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     *
      * @throws Exception
      */
     public function index()
     {
 
-//         Don't even bother if they're not logged in super-users.
-        if(!auth()->user() || !auth()->user()->isSuper()) {
+        //         Don't even bother if they're not logged in super-users.
+        if (! auth()->user() || ! auth()->user()->isSuper()) {
             return;
         }
 
-//        $key = $this->makeKey();
-//        dd($key);
-//        $repository = resolve(RevisionRepository::class)
-//            ->whereKey($key);
-
-
+        //        $key = $this->makeKey();
+        //        dd($key);
+        //        $repository = resolve(RevisionRepository::class)
+        //            ->whereKey($key);
 
         $menuItems = $this->buildMenuOptions();
 
         $menuItems = collect(event('alt_admin_menu_items', [$menuItems]))->last();
 
-        if(!is_array($menuItems)) {
+        if (! is_array($menuItems)) {
             $menuItems = [];
         }
 
@@ -96,18 +87,18 @@ class AltAdminBar extends Tags
             'revisionHrefData' => [
                 'collection' => $this->context['page']->collection->handle,
                 'site' => Data::getSite()->handle(),
-                'page' => $this->context['page']->id
-            ]
+                'page' => $this->context['page']->id,
+            ],
         ]);
     }
 
-    private function styles() : string
+    private function styles(): string
     {
         return sprintf(
             '<link rel="stylesheet" href="%s"/>',
             $this->vite
                 ->useHotfile(
-                    __DIR__ . '/../../resources/dist/hot'
+                    __DIR__.'/../../resources/dist/hot'
                 )->useBuildDirectory(
                     'vendor/alt-admin-bar/build'
                 )->asset(
@@ -117,16 +108,17 @@ class AltAdminBar extends Tags
     }
 
     /**
-     * @throws Exception
      * @return array $items
+     *
+     * @throws Exception
      */
-    private function buildMenuOptions() : array
+    private function buildMenuOptions(): array
     {
         $items = [];
         $menuConfig = $this->data->getMenuConfig();
-        foreach($menuConfig as $menuItem) {
+        foreach ($menuConfig as $menuItem) {
             $children = [];
-            foreach($menuItem['children'] ?? [] as $item) {
+            foreach ($menuItem['children'] ?? [] as $item) {
                 $children[] = MenuItemDTO::make($item);
             }
 

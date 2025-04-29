@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AltDesign\AltAdminBar\Extend;
 
+use AltDesign\AltAdminBar\Helpers\Data;
 use Statamic\Contracts\Entries\Entry;
 use Statamic\Stache\Repositories\EntryRepository as BaseEntryRepository;
-use AltDesign\AltAdminBar\Helpers\Data;
 use Statamic\Support\Arr;
 
 class EntryRepository extends BaseEntryRepository
@@ -38,7 +38,7 @@ class EntryRepository extends BaseEntryRepository
             $entry->id
         );
 
-        if (!$revision) {
+        if (! $revision) {
             return $entry->hasStructure()
                 ? $entry->structure()->in($site)->find($entry->id())
                 : $entry;
@@ -46,13 +46,12 @@ class EntryRepository extends BaseEntryRepository
 
         $entryData = $entry->data();
         $revData = $revision->attributes()['data'];
-        foreach($entryData as $key => &$value) {
+        foreach ($entryData as $key => &$value) {
             if (isset($revData[$key])) {
                 $entryData[$key] = $revData[$key];
             }
         }
         $entry->data($entryData);
-
 
         return $entry;
     }
@@ -61,8 +60,7 @@ class EntryRepository extends BaseEntryRepository
         string $collection,
         string $siteHandle,
         string $pageId
-    ): string
-    {
+    ): string {
         return sprintf(
             '%s/%s/%s/%s',
             'collections',

@@ -1,10 +1,10 @@
 <?php
 
-use Statamic\Filesystem\Manager;
 use AltDesign\AltAdminBar\Helpers\Data;
+use Statamic\Filesystem\Manager;
 
 it('Returns an array when YAML is loaded from the disk', function () {
-    $yaml = <<<YAML
+    $yaml = <<<'YAML'
         title: Example Post
         slug: example-post
         author: john_doe

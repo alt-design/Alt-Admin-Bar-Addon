@@ -17,7 +17,7 @@ class AdminBarController
             'collection' => 'required|string',
             'site' => 'required|string',
             'page' => 'required',
-            'epoch' => 'required|int'
+            'epoch' => 'required|int',
         ]);
 
         $data->setRevisionEpoch(
