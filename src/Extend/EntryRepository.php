@@ -38,7 +38,7 @@ class EntryRepository extends BaseEntryRepository
             $entry->id
         );
 
-        if (! $revision) {
+        if (! $revision || !config('statamic.revisions.enabled')) {
             return $entry->hasStructure()
                 ? $entry->structure()->in($site)->find($entry->id())
                 : $entry;

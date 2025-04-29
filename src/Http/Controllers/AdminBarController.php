@@ -13,6 +13,10 @@ class AdminBarController
         Request $request,
         Data $data
     ) {
+        if (! auth()->user() || ! auth()->user()->isSuper()) {
+            return response(403, 'Unauthenticated');
+        }
+
         $validated = $request->validate([
             'collection' => 'required|string',
             'site' => 'required|string',

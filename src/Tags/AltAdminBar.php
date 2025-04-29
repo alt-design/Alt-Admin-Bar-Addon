@@ -55,16 +55,10 @@ class AltAdminBar extends Tags
      */
     public function index()
     {
-
-        //         Don't even bother if they're not logged in super-users.
+        //  Don't even bother if they're not logged in super-users.
         if (! auth()->user() || ! auth()->user()->isSuper()) {
             return;
         }
-
-        //        $key = $this->makeKey();
-        //        dd($key);
-        //        $repository = resolve(RevisionRepository::class)
-        //            ->whereKey($key);
 
         $menuItems = $this->buildMenuOptions();
 
@@ -80,6 +74,7 @@ class AltAdminBar extends Tags
             'avatar' => auth()?->user()?->name[0] ?? '', // We have at least the user
             'preferencesUrl' => cp_route('preferences.user.edit'),
             'profileUrl' => cp_route('account'),
+            'revisionsEnabled' => config('statamic.revisions.enabled'),
             'revisions' => Data::getRevisionRepository(
                 $this->context['page']->collection->handle,
                 $this->context['page']->id

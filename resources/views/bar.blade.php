@@ -48,6 +48,7 @@
     </div>
 
     <div class="alt-admin-bar-flex alt-admin-bar-text-white alt-admin-bar-items-center">
+        @if($revisionsEnabled)
         <div class="alt-admin-bar-group alt-admin-bar-relative">
             <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]" href="{{ $profileUrl }}">
                 Revisions
@@ -72,6 +73,7 @@
                 @endforelse
             </div>
         </div>
+        @endif
         <div class="alt-admin-bar-group alt-admin-bar-relative">
             <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]" href="{{ $profileUrl }}">
                 <span>Hey there {{ auth()->user()->name ?? '' }}!</span>
