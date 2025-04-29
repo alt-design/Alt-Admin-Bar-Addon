@@ -24,10 +24,14 @@
     },
     "config": {
         "allow-plugins": {
-            "pixelfear/composer-dist-plugin": false
+            "pixelfear/composer-dist-plugin": false,
+            "pestphp/pest-plugin": true
         }
     },
     "require-dev": {
-        "laravel/pint": "^1.22"
+        "laravel/pint": "^1.22",
+        "pestphp/pest": "^2.35",
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "mockery/mockery": "^1.6"
     }
 }

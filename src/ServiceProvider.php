@@ -3,6 +3,7 @@
 namespace AltDesign\AltAdminBar;
 
 use Statamic\Providers\AddonServiceProvider;
+use Statamic\Revisions\RevisionRepository;
 
 /**
  * Class ServiceProvider
@@ -24,6 +25,13 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $tags = [
         \AltDesign\AltAdminBar\Tags\AltAdminBar::class,
+    ];
+
+    /**
+     * @var string[] - Register our routes (mainly for settings tbh).
+     */
+    protected $routes = [
+        'web' => __DIR__.'/routes/web.php',
     ];
 
     public function bootAddon()

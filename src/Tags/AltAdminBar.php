@@ -8,7 +8,11 @@ use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
 use Illuminate\Foundation\Vite;
 use Statamic\Auth\UserTags;
+use Statamic\Facades\Site;
+use Statamic\Revisions\RevisionRepository;
 use Statamic\Tags\Tags;
+use Statamic\Revisions\Revision;
+use Statamic\Facades\Revision as RevisionFacade;
 
 use Exception;
 
@@ -31,8 +35,23 @@ class AltAdminBar extends Tags
         protected UserTags $userTags,
         private Vite $vite,
         private Data $data
-    )
+    ) {
+        //
+    }
+
+    public function makeKey(): string
     {
+        if (! $site = Site::findByUrl(request()->url())) {
+            throw new \Exception('Unable to find site exception');
+        }
+
+        return sprintf(
+            '%s/%s/%s/%s',
+            'collections',
+              $this->context['collection']->handle,
+              $site->handle(),
+              $this->context['page']->id
+        );
     }
 
     /**
@@ -43,10 +62,18 @@ class AltAdminBar extends Tags
      */
     public function index()
     {
-        // Don't even bother if they're not logged in super-users.
+
+//         Don't even bother if they're not logged in super-users.
         if(!auth()->user() || !auth()->user()->isSuper()) {
             return;
         }
+
+//        $key = $this->makeKey();
+//        dd($key);
+//        $repository = resolve(RevisionRepository::class)
+//            ->whereKey($key);
+
+
 
         $menuItems = $this->buildMenuOptions();
 
@@ -59,9 +86,18 @@ class AltAdminBar extends Tags
         return view('alt-admin-bar::bar', [
             'adminBarStyles' => $this->styles(),
             'menuItems' => $menuItems,
-            'avatar' => auth()->user()->name[0] ?? '', // We have at least the user
+            'avatar' => auth()?->user()?->name[0] ?? '', // We have at least the user
             'preferencesUrl' => cp_route('preferences.user.edit'),
-            'profileUrl' => cp_route('account')
+            'profileUrl' => cp_route('account'),
+            'revisions' => Data::getRevisionRepository(
+                $this->context['page']->collection->handle,
+                $this->context['page']->id
+            ),
+            'revisionHrefData' => [
+                'collection' => $this->context['page']->collection->handle,
+                'site' => Data::getSite()->handle(),
+                'page' => $this->context['page']->id
+            ]
         ]);
     }
 
