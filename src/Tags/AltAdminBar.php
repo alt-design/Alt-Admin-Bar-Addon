@@ -49,7 +49,7 @@ class AltAdminBar extends Tags
     /**
      * Usage: {{ alt_admin_bar }}
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View|void
      *
      * @throws Exception
      */
@@ -84,6 +84,10 @@ class AltAdminBar extends Tags
                 'site' => Data::getSite()->handle(),
                 'page' => $this->context['page']->id,
             ],
+            'activeEpoch' => $this->data->getRevisionEpoch(
+                $this->context['page']->collection->handle,
+                $this->context['page']->id
+            ),
         ]);
     }
 

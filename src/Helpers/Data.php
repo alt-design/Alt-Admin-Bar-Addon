@@ -61,9 +61,12 @@ class Data
         string $collection,
         string $siteHandle,
         string $pageId,
-        int $epoch
+        ?int $epoch
     ): void {
-        $this->revisions[$collection][$siteHandle][$pageId] = $epoch;
+        unset($this->revisions[$collection][$siteHandle][$pageId]);
+        if ($epoch) {
+            $this->revisions[$collection][$siteHandle][$pageId] = $epoch;
+        }
         $this->putRevisionsToSession();
     }
 

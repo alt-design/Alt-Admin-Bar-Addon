@@ -50,10 +50,45 @@
     <div class="alt-admin-bar-flex alt-admin-bar-text-white alt-admin-bar-items-center">
         @if($revisionsEnabled)
         <div class="alt-admin-bar-group alt-admin-bar-relative">
-            <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]" href="{{ $profileUrl }}">
+            <a class="alt-admin-bar-px-4 alt-admin-bar-py-2 alt-admin-bar-flex alt-admin-bar-items-center hover:alt-admin-bar-bg-[#555555]
+            @if($activeEpoch)alt-admin-bar-px-4 alt-admin-bar-bg-gradient-to-r alt-admin-bar-from-pink-500 alt-admin-bar-via-yellow-400 alt-admin-bar-to-blue-500
+              alt-admin-bar-bg-400 alt-admin-bar-bg-clip-text alt-admin-bar-text-transparent alt-admin-bar-transition-all alt-admin-bar-duration-500
+              hover:alt-admin-bar-animate-gradient-x @endif" href="{{ $profileUrl }}">
                 Revisions
             </a>
-            <div class="alt-admin-bar-opacity-0 group-hover:alt-admin-bar-opacity-100 alt-admin-bar-absolute alt-admin-bar-top-full alt-admin-bar-right-0 alt-admin-bar-max-w-[400px] alt-admin-bar-py-1.5 alt-admin-bar-bg-[#333333]">
+            <div class="
+                alt-admin-bar-opacity-0
+                alt-admin-bar-px-2
+                group-hover:alt-admin-bar-opacity-100
+                alt-admin-bar-absolute alt-admin-bar-top-full
+                alt-admin-bar-right-0
+                alt-admin-bar-max-w-[400px]
+                alt-admin-bar-min-w-56
+                alt-admin-bar-py-1.5
+                alt-admin-bar-bg-[#333333]
+                alt-admin-bar-overflow-scroll
+                alt-admin-bar-max-h-64">
+                <a href="{{
+                        route('alt-admin-bar.revision.set',
+                        array_merge(
+                            $revisionHrefData,
+                            [ 'epoch' => null ]
+                        )) }}">
+                    <div @class([
+                            'alt-admin-bar-px-3',
+                            'alt-admin-bar-py-1.5',
+                            'alt-admin-bar-mb-2',
+                            'alt-admin-bar-w-full',
+                            'alt-admin-bar-min-w-36',
+                            'alt-admin-bar-inline-block',
+                            'alt-admin-bar-whitespace-nowrap',
+                            'alt-admin-bar-text-left',
+                            'hover:alt-admin-bar-bg-[#555555]',
+                            ])>
+                        <div>Published Version</div>
+                        <div class="alt-admin-bar-text-xs">{{ now()->format('y/m/d H:i') }}</div>
+                    </div>
+                </a>
                 @forelse($revisions as $epoch => $revision)
                     <a href="{{
                         route('alt-admin-bar.revision.set',
@@ -61,11 +96,22 @@
                             $revisionHrefData,
                             [ 'epoch' => $epoch ]
                         )) }}">
-                        <div class="alt-admin-bar-pl-3 alt-admin-bar-pr-8 alt-admin-bar-w-full alt-admin-bar-text-left alt-admin-bar-py-1.5 hover:alt-admin-bar-bg-[#555555] alt-admin-bar-mb-2 alt-admin-bar-inline-block alt-admin-bar-whitespace-nowrap">
-                            <div>Date : {{ \Carbon\Carbon::parse($epoch)->format('y/m/d H:i') }}</div>
-                            @if($revision->message())
-                                <div>Message : {{ $revision->message() }}</div>
-                            @endif
+                        <div @class([
+                            'alt-admin-bar-px-3',
+                            'alt-admin-bar-py-1.5',
+                            'alt-admin-bar-mb-2',
+                            'alt-admin-bar-w-full',
+                            'alt-admin-bar-min-w-36',
+                            'alt-admin-bar-inline-block',
+                            'alt-admin-bar-whitespace-nowrap',
+                            'alt-admin-bar-text-left',
+                            'hover:alt-admin-bar-bg-[#555555]',
+                            'alt-admin-bar-bg-white' => $epoch == $activeEpoch,
+                            'alt-admin-bar-text-[#333333]' => $epoch == $activeEpoch,
+                            'hover:alt-admin-bar-text-white' => $epoch == $activeEpoch,
+                            ])>
+                            <div>{{ $revision->message() }}</div>
+                            <div class="alt-admin-bar-text-xs">{{ \Carbon\Carbon::parse($epoch)->format('y/m/d H:i') }}</div>
                         </div>
                     </a>
                 @empty

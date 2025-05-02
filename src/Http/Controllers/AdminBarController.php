@@ -21,14 +21,19 @@ class AdminBarController
             'collection' => 'required|string',
             'site' => 'required|string',
             'page' => 'required',
-            'epoch' => 'required|int',
+            'epoch' => 'sometimes|int',
         ]);
+
+        if ($epoch = ($validated['epoch'] ?? null))
+        {
+            $epoch = (int) $epoch;
+        }
 
         $data->setRevisionEpoch(
             collection: $validated['collection'],
             siteHandle: $validated['site'],
             pageId: $validated['page'],
-            epoch: (int) $validated['epoch'],
+            epoch: $epoch,
         );
 
         return redirect()->back();
