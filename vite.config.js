@@ -6,7 +6,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/alt-admin-bar.js',
                 'resources/css/alt-admin-bar.css',
             ],
             publicDirectory: 'resources/dist',

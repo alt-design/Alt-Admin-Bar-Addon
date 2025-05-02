@@ -1,6 +1,6 @@
 {
     "name": "alt-design/alt-admin-bar",
-    "description": "Alt Admim Bar addon",
+    "description": "Alt Admin Bar Addon",
     "license": "MIT",
     "autoload": {
         "psr-4": {

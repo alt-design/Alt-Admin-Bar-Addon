@@ -1,12 +1,7 @@
 {
   "resources/css/alt-admin-bar.css": {
-    "file": "assets/alt-admin-bar-bfecbb06.css",
+    "file": "assets/alt-admin-bar-a461a758.css",
     "isEntry": true,
     "src": "resources/css/alt-admin-bar.css"
-  },
-  "resources/js/alt-admin-bar.js": {
-    "file": "assets/alt-admin-bar-4ed993c7.js",
-    "isEntry": true,
-    "src": "resources/js/alt-admin-bar.js"
   }
 }
