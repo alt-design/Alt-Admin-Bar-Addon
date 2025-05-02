@@ -84,6 +84,9 @@
                             'alt-admin-bar-whitespace-nowrap',
                             'alt-admin-bar-text-left',
                             'hover:alt-admin-bar-bg-[#555555]',
+                            'alt-admin-bar-bg-white' => ! $activeEpoch,
+                            'alt-admin-bar-text-[#333333]' => ! $activeEpoch,
+                            'hover:alt-admin-bar-text-white' => ! $activeEpoch,
                             ])>
                         <div>Published Version</div>
                         <div class="alt-admin-bar-text-xs">{{ now()->format('y/m/d H:i') }}</div>

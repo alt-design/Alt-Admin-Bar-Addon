@@ -126,12 +126,21 @@ class Data
     ): mixed {
         $siteHandle = self::getSite()->handle() ?? 'default';
 
-        return resolve(RevisionRepository::class)
-            ->whereKey(self::makeRevisionsKey(
-                collection: $collection,
-                siteHandle: $siteHandle,
-                pageId: $pageId
-            ));
+        $revisionRepository = resolve(RevisionRepository::class);
+        $key = self::makeRevisionsKey(
+            collection: $collection,
+            siteHandle: $siteHandle,
+            pageId: $pageId
+        );
+
+        $repoCollection = $revisionRepository->whereKey($key);
+
+        // Check for a working version and push that in.
+        if ($working = $revisionRepository->findWorkingCopyByKey($key)) {
+            $working->message('Working Copy');
+            $repoCollection->push($working);
+        }
+        return $repoCollection->reverse();
     }
 
     /**
