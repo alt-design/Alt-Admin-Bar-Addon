@@ -64,6 +64,23 @@ Illuminate\Support\Facades\Event::listen('alt_admin_menu_items', function ($menu
 
 Currently working on a tag to help include this in templates.
 
+## Revisions
+
+The Admin Bar supports Statamic's revision system and allows you to step through the revisions made to a page.
+
+Once Revisions are enabled on your site, you'll see a "Revisions" item appear on the right of the menu bar.
+
+This contains a scrolling menu with all the revisions on the current page appeared in descending date order. 
+You can simply select a revision and the page will reload with the content from that revision.
+
+The "Revisions" menu item text will become highlighted to show that a revision is active. 
+
+The Revisions system can even display the current working copy for changes that have been save but not published yet,
+this allows you to preview your changes quickly on the main page.
+
+Please note, this system have been tested with Statamic's base file based entries. Functionality with other entry repos 
+are not tested or supported at the mo
+
 ## Questions etc
 
 Drop us a big shout-out if you have any questions, comments, or concerns. We're always looking to improve our addons, so if you have any feature requests, we'd love to hear them.

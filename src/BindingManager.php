@@ -6,6 +6,7 @@ namespace AltDesign\AltAdminBar;
 
 use AltDesign\AltAdminBar\Helpers\Data;
 use Statamic\Filesystem\Manager;
+use Statamic\Stache\Stache;
 use Statamic\Yaml\Yaml;
 
 // Binds stuff to the service container, split out here to keep service provider tidy and be testable
@@ -24,6 +25,15 @@ class BindingManager
                 manager: resolve(Manager::class),
                 yaml: resolve(Yaml::class)
             );
+        });
+
+        $this->app->singleton(
+            \Statamic\Contracts\Entries\EntryRepository::class,
+            \AltDesign\AltAdminBar\Extend\EntryRepository::class
+        );
+
+        $this->app->singleton(\AltDesign\AltAdminBar\Extend\EntryRepository::class, function ($app) {
+            return new \AltDesign\AltAdminBar\Extend\EntryRepository(resolve(Stache::class));
         });
     }
 }
