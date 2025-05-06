@@ -138,7 +138,7 @@ class Data
         // Check for a working version and push that in.
         if ($working = $revisionRepository->findWorkingCopyByKey($key)) {
             $working->message('Working Copy');
-            $repoCollection->push($working);
+            $repoCollection->put($working->id(), $working);
         }
         return $repoCollection->reverse();
     }
