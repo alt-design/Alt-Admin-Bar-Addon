@@ -27,13 +27,18 @@ class BindingManager
             );
         });
 
-        $this->app->singleton(
-            \Statamic\Contracts\Entries\EntryRepository::class,
-            \AltDesign\AltAdminBar\Extend\EntryRepository::class
-        );
+        if (! config('statamic.revisions.enabled')) {
+            return;
+        }
 
-        $this->app->singleton(\AltDesign\AltAdminBar\Extend\EntryRepository::class, function ($app) {
-            return new \AltDesign\AltAdminBar\Extend\EntryRepository(resolve(Stache::class));
-        });
+        $this->app->extend(
+            \Statamic\Contracts\Entries\EntryRepository::class,
+            function ($base, $app) {
+                return new \AltDesign\AltAdminBar\Decorators\EntryRepositoryDecorator(
+                    base: $base,
+                    stache: resolve(Stache::class)
+                );
+            }
+        );
     }
 }

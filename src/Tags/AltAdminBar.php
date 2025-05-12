@@ -1,23 +1,20 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AltDesign\AltAdminBar\Tags;
 
 use AltDesign\AltAdminBar\DTO\MenuItemDTO;
 use AltDesign\AltAdminBar\Helpers\Data;
+use Exception;
 use Illuminate\Foundation\Vite;
 use Statamic\Auth\UserTags;
 use Statamic\Facades\Site;
-use Statamic\Revisions\RevisionRepository;
 use Statamic\Tags\Tags;
-
-use Exception;
 
 /**
  * Class AltAdminBar
  *
- * @package  AltDesign\AltAdminBar
  * @author   Ben Harvey <ben@alt-design.net>, Benammi Swift <benammi@alt-design.net>, Lucy Ahmed <lucy@alt-design.net>
  * @license  Copyright (C) Alt Design Limited - All Rights Reserved - licensed under the MIT license
  *
@@ -25,11 +22,6 @@ use Exception;
  */
 class AltAdminBar extends Tags
 {
-    /**
-     * @param UserTags $userTags
-     * @param Vite $vite
-     * @param Data $data
-     */
     public function __construct(
         protected UserTags $userTags,
         private Vite $vite,
@@ -71,7 +63,7 @@ class AltAdminBar extends Tags
 
         $menuItems = collect(event('alt_admin_menu_items', [$ourItems]))->last();
 
-        if(!is_array($menuItems)) {
+        if (! is_array($menuItems)) {
             $menuItems = $ourItems;
         }
 

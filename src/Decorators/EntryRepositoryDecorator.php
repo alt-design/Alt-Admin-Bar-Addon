@@ -2,15 +2,28 @@
 
 declare(strict_types=1);
 
-namespace AltDesign\AltAdminBar\Extend;
+namespace AltDesign\AltAdminBar\Decorators;
 
 use AltDesign\AltAdminBar\Helpers\Data;
 use Statamic\Contracts\Entries\Entry;
-use Statamic\Stache\Repositories\EntryRepository as BaseEntryRepository;
+use Statamic\Contracts\Entries\EntryRepository as EntryRepositoryContract;
+use Statamic\Facades\Blink;
+use Statamic\Stache\Stache;
 use Statamic\Support\Arr;
 
-class EntryRepository extends BaseEntryRepository
+class EntryRepositoryDecorator
 {
+    protected array $substitutionsByUri = [];
+
+    protected array $substitutionsById = [];
+
+    public function __construct(
+        protected EntryRepositoryContract $base,
+        protected Stache $stache
+    ) {
+        //
+    }
+
     public function findByUri(string $uri, ?string $site = null): ?Entry
     {
         $site = $site ?? $this->stache->sites()->first();
@@ -38,7 +51,7 @@ class EntryRepository extends BaseEntryRepository
             $entry->id
         );
 
-        if (! $revision || !config('statamic.revisions.enabled')) {
+        if (! $revision || ! config('statamic.revisions.enabled')) {
             return $entry->hasStructure()
                 ? $entry->structure()->in($site)->find($entry->id())
                 : $entry;
@@ -56,6 +69,20 @@ class EntryRepository extends BaseEntryRepository
         return $entry;
     }
 
+    public function substitute($item)
+    {
+        Blink::store('entry-uris')->forget($item->id());
+        $this->substitutionsById[$item->id()] = $item;
+        $this->substitutionsByUri[$item->locale().'@'.$item->uri()] = $item;
+    }
+
+    public function applySubstitutions($items)
+    {
+        return $items->map(function ($item) {
+            return $this->substitutionsById[$item->id()] ?? $item;
+        });
+    }
+
     public static function makeKey(
         string $collection,
         string $siteHandle,
@@ -68,5 +95,11 @@ class EntryRepository extends BaseEntryRepository
             $siteHandle,
             $pageId
         );
+    }
+
+    // Delegate all other methods to the base
+    public function __call($method, $args)
+    {
+        return $this->base->$method(...$args);
     }
 }

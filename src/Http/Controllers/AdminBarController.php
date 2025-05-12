@@ -24,8 +24,7 @@ class AdminBarController
             'epoch' => 'sometimes|int',
         ]);
 
-        if ($epoch = ($validated['epoch'] ?? null))
-        {
+        if ($epoch = ($validated['epoch'] ?? null)) {
             $epoch = (int) $epoch;
         }
 
