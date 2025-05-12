@@ -140,6 +140,7 @@ class Data
             $working->message('Working Copy');
             $repoCollection->put($working->id(), $working);
         }
+
         return $repoCollection->reverse();
     }
 

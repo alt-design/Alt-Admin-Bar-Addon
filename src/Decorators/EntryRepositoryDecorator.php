@@ -14,6 +14,7 @@ use Statamic\Support\Arr;
 class EntryRepositoryDecorator
 {
     protected array $substitutionsByUri = [];
+
     protected array $substitutionsById = [];
 
     public function __construct(
@@ -50,7 +51,7 @@ class EntryRepositoryDecorator
             $entry->id
         );
 
-        if (! $revision || !config('statamic.revisions.enabled')) {
+        if (! $revision || ! config('statamic.revisions.enabled')) {
             return $entry->hasStructure()
                 ? $entry->structure()->in($site)->find($entry->id())
                 : $entry;

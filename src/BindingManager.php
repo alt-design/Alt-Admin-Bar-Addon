@@ -27,7 +27,7 @@ class BindingManager
             );
         });
 
-        if (!config('statamic.revisions.enabled')) {
+        if (! config('statamic.revisions.enabled')) {
             return;
         }
 
