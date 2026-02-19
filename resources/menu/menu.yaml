@@ -4,22 +4,23 @@ cache:
   children:
     -
       title: 'Content'
-      href: 'utilities.cache.clear'
-      route_args:
-        - 'stache'
+      href: 'utilities.cache.clear-stache'
       post: true
       cp_route: true
     -
       title: 'Static Pages'
-      href: 'utilities.cache.clear'
+      href: 'utilities.cache.invalidate-static-pages'
       route_args:
         - 'static'
       post: true
       cp_route: true
     -
       title: 'Application Cache'
-      href: 'utilities.cache.clear'
-      route_args:
-        - 'application'
+      href: 'utilities.cache.clear-application-cache'
+      post: true
+      cp_route: true
+    -
+      title: 'Image Cache'
+      href: 'utilities.cache.clear-image-cache'
       post: true
       cp_route: true
