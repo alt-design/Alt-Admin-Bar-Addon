@@ -29,7 +29,7 @@ class ServiceProvider extends AddonServiceProvider
      * @var string[] - Register our routes (mainly for settings tbh).
      */
     protected $routes = [
-        'web' => __DIR__.'/routes/web.php',
+        'cp' => __DIR__.'/routes/cp.php',
     ];
 
     public function bootAddon()
